@@ -4,6 +4,17 @@ CampusSync is a campus collaboration platform with role-based accounts, messagin
 
 The Java 17+ Spring Boot backend serves the frontend on port `8000`. PostgreSQL stores accounts, sessions, onboarding data, workspace snapshots, messages, uploaded files, and calendar imports.
 
+## Deploy to Render
+
+The repository includes a Render Blueprint and Dockerfile. You do not need Docker installed locally; Render builds the Java app and serves the website and API from one web service.
+
+1. In Render, choose **New → Blueprint** and connect `mondalrupam535/CampusSync` on the `main` branch.
+2. Before deploying, provide `DATABASE_URL`, `DATABASE_USERNAME`, and `DATABASE_PASSWORD` for your hosted PostgreSQL database when Render prompts for the Blueprint's environment variables. `DATABASE_URL` must be a JDBC URL such as `jdbc:postgresql://your-host:5432/your-database`. A PostgreSQL instance running only on your computer is not accessible to Render.
+3. Deploy the `campussync` web service. Render supplies the port, and `/health` is configured as the health check.
+4. If using Google sign-in, authorize the deployed service URL as a JavaScript origin in Google Cloud Console. Optionally add `GOOGLE_CLIENT_ID`, `GEMINI_API_KEY`, and `CAMPUSSYNC_ADMIN_EMAILS` as service environment variables in Render.
+
+Keep database credentials and API keys in Render's environment settings, not in Git.
+
 ## Run locally on Windows
 
 ### 1. Start your installed PostgreSQL service
