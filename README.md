@@ -1,6 +1,8 @@
 # CampusSync
 
-CampusSync is served by a Java 17+ Spring Boot backend on port `8000`. PostgreSQL stores accounts, sessions, onboarding data, workspace snapshots, messages, uploaded files, and calendar imports. The frontend is served by the Java application from this project directory.
+CampusSync is a campus collaboration platform with role-based accounts, messaging, announcements, event and room-booking dashboards, calendar uploads, and an optional Gemini AI assistant. Built with Java, Spring Boot, and PostgreSQL.
+
+The Java 17+ Spring Boot backend serves the frontend on port `8000`. PostgreSQL stores accounts, sessions, onboarding data, workspace snapshots, messages, uploaded files, and calendar imports.
 
 ## Run locally on Windows
 
