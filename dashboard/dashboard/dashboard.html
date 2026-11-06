@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>CampusSync – SRM AP Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="dashboard.css?v=dashboard-demo-data-v1">
+  <link rel="stylesheet" href="../dashboard-common.css?v=profile-editor-20261101">
+  <link rel="stylesheet" href="../gemini-assistant/widget.css">
+</head>
+<body data-page="dashboard">
+  <!-- Ambient Glassmorphism Background Glows -->
+  <div class="ambient-bg" aria-hidden="true">
+    <div class="glow glow-1"></div>
+    <div class="glow glow-2"></div>
+    <div class="glow glow-3"></div>
+  </div>
+
+  <div class="app">
+    <!-- Left Navigation Sidebar -->
+    <aside class="side">
+      <div class="logo">
+        <img src="logo.jpg" alt="SRM AP Logo" class="logo-img">
+        <span>CampusSync</span>
+      </div>
+      <div class="menu">MAIN MENU</div>
+      <ul class="nav">
+        <li><a class="nav-btn on" data-target="dashboard" href="dashboard.html" aria-current="page">Dashboard</a></li>
+        <li><a class="nav-btn" data-target="inbox" href="../inbox/inbox.html">Inbox</a></li>
+        <li><a class="nav-btn" data-target="announcements" href="../announcement/announcements.html">Announcements</a></li>
+        <li><a class="nav-btn" data-target="events" href="../events/events.html">Events</a></li>
+        <li><a class="nav-btn" data-target="room-booking" href="../rooms/room-booking.html">Room Booking</a></li>
+        <li><a class="nav-btn" data-target="approvals" href="../approvals/approvals.html">Approvals</a></li>
+      </ul>
+    </aside>
+
+    <!-- Main Workspace -->
+    <main class="main">
+      <!-- Top Navigation & Profile Bar -->
+      <header class="top">
+        <div class="search-box">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+          <input type="text" id="globalSearch" placeholder="Search announcements, messages, events...">
+        </div>
+
+        <div class="top-right">
+          <!-- Theme Switcher Button -->
+          <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle Theme">
+            <span class="theme-icon">🌙</span>
+            <span class="theme-text">Dark Mode</span>
+          </button>
+
+          <span class="sep"></span>
+
+          <button class="bell" id="notifBell" type="button" aria-label="View unread notifications" title="Notifications">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 9a6 6 0 0 1 12 0c0 6 2 7 2 7H4s2-1 2-7zM10 20a2 2 0 0 0 4 0"/></svg>
+          </button>
+          <span class="sep"></span>
+          
+          <!-- User Profile Dropdown Menu -->
+          <div class="user-menu-wrap">
+            <button class="user" id="userMenuBtn" type="button" aria-expanded="false" aria-controls="profileDropdown">
+              <span class="av">
+                <img id="userAvatarImage" alt="" hidden>
+                <span id="userInitials">--</span>
+              </span>
+              <span class="user-meta">
+                <span class="name" id="userName">Loading User...</span>
+                <small class="role-badge" id="userRole">Role</small>
+              </span>
+            </button>
+            <div class="profile-dropdown" id="profileDropdown" aria-label="Profile details">
+              <div class="profile-card__header">
+                <span class="profile-card__avatar">
+                  <img id="profileAvatarImage" alt="" hidden>
+                  <span id="profileInitials">--</span>
+                </span>
+                <div class="profile-card__identity">
+                  <strong id="dropdownName">User Name</strong>
+                  <span class="profile-card__role" id="profileRole">Role</span>
+                  <span class="profile-card__department" id="profileCardDepartment"></span>
+                </div>
+              </div>
+              <div class="profile-details">
+                <div class="profile-details__section">
+                  <h2>Contact</h2>
+                  <div class="profile-detail profile-detail--wide" data-profile-detail="email"><span>Email</span><strong id="profileEmail"></strong></div>
+                  <div class="profile-detail" data-profile-detail="username"><span>Username</span><strong id="profileUsername"></strong></div>
+                  <div class="profile-detail" data-profile-detail="phone"><span>Phone</span><strong id="profilePhone"></strong></div>
+                </div>
+                <div class="profile-details__section">
+                  <h2>Campus</h2>
+                  <div class="profile-detail profile-detail--wide" data-profile-detail="department"><span>Department / unit</span><strong id="profileDepartment"></strong></div>
+                  <div class="profile-detail profile-detail--wide" data-profile-detail="designation"><span>Designation / post</span><strong id="profileDesignation"></strong></div>
+                  <div class="profile-detail" data-profile-detail="joining"><span>Joining year</span><strong id="profileJoining"></strong></div>
+                  <div class="profile-detail" data-profile-detail="reg"><span>Registration number</span><strong id="profileReg"></strong></div>
+                  <div class="profile-detail" data-profile-detail="school"><span>School</span><strong id="profileSchool"></strong></div>
+                  <div class="profile-detail" data-profile-detail="programme"><span>Programme</span><strong id="profileProgramme"></strong></div>
+                  <div class="profile-detail" data-profile-detail="spec"><span>Specialization</span><strong id="profileSpec"></strong></div>
+                  <div class="profile-detail" data-profile-detail="admission"><span>Admission year</span><strong id="profileAdmission"></strong></div>
+                  <div class="profile-detail" data-profile-detail="acyear"><span>Academic year</span><strong id="profileAcademicYear"></strong></div>
+                  <div class="profile-detail" data-profile-detail="section"><span>Section</span><strong id="profileSection"></strong></div>
+                  <div class="profile-detail" data-profile-detail="employeeId"><span>Employee ID</span><strong id="profileEmployeeId"></strong></div>
+                  <div class="profile-detail" data-profile-detail="office"><span>Office / room</span><strong id="profileOffice"></strong></div>
+                </div>
+              </div>
+              <div class="profile-card__footer">
+                <button id="logoutBtn" class="logout-btn" type="button">Log out</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- Dashboard Main Content -->
+      <section class="content">
+        <!-- Welcome Header -->
+        <div class="hello">
+          <div>
+            <h1>Welcome back, <b id="welcomeName">User</b> 👋</h1>
+            <p class="subhead"><span id="welcomeDesignation">Designation</span> • <span id="welcomeDept">Department</span> • <span id="currentDate">Date</span></p>
+          </div>
+          <div class="seg" role="group" aria-label="Period">
+            <button data-p="day">Day</button>
+            <button data-p="week">Week</button>
+            <button data-p="month" class="on">Month</button>
+          </div>
+        </div>
+
+        <!-- AI Priority Alert Banner -->
+        <section class="card alert-card">
+          <div class="alert-icon">🤖</div>
+          <div class="alert-content">
+            <h3>AI-Powered Priority Alert</h3>
+            <p id="aiAlertText">Faculty Meeting scheduled for tomorrow at 10:00 AM in AL-Auditorium requires your attendance response.</p>
+          </div>
+          <button class="btn btn-sm" id="priorityAlertAction" type="button">Take Action</button>
+        </section>
+
+        <!-- Quick Statistics Cards -->
+        <section class="stats-grid">
+          <button class="card stat-card" type="button" data-dashboard-route="inbox" data-route-params="filter=unread" aria-label="View unread messages">
+            <span class="stat-icon mint-bg">✉️</span>
+            <div>
+              <div class="stat-num" id="statUnread">4</div>
+              <div class="stat-label">Unread Messages</div>
+            </div>
+          </button>
+          <button class="card stat-card" type="button" data-dashboard-route="approvals" aria-label="View pending approvals">
+            <span class="stat-icon orange-bg">⏳</span>
+            <div>
+              <div class="stat-num" id="statApprovals">2</div>
+              <div class="stat-label">Pending Approvals</div>
+            </div>
+          </button>
+          <button class="card stat-card" type="button" data-dashboard-route="events" data-route-params="view=list" aria-label="View upcoming events">
+            <span class="stat-icon mint-bg">📅</span>
+            <div>
+              <div class="stat-num" id="statEvents">5</div>
+              <div class="stat-label">Upcoming Events</div>
+            </div>
+          </button>
+          <button class="card stat-card" type="button" data-dashboard-route="inbox" data-route-params="filter=action" aria-label="View pending tasks">
+            <span class="stat-icon green-bg">📋</span>
+            <div>
+              <div class="stat-num" id="statTasks">3</div>
+              <div class="stat-label">Pending Tasks</div>
+            </div>
+          </button>
+        </section>
+
+        <!-- Quick Actions Grid -->
+        <section class="quick-actions">
+          <h3>Quick Actions</h3>
+          <div class="actions-grid">
+            <button class="action-btn" type="button" data-quick-action="announcement"><span>📢</span> Compose Announcement</button>
+            <button class="action-btn" type="button" data-quick-action="message"><span>💬</span> Send a Message</button>
+            <button class="action-btn" type="button" data-quick-action="room"><span>🏫</span> Request Room Booking</button>
+            <button class="action-btn" type="button" data-quick-action="event"><span>💡</span> Create Event Proposal</button>
+          </div>
+        </section>
+
+        <!-- Main Workspace Row: Orange Circular Graph & Room Snapshot -->
+        <section class="row">
+          <!-- Animated Orange Circular Graph Card -->
+          <div class="card circular-chart-card">
+            <h3>Message Activity &amp; Completion</h3>
+            <div class="circular-container">
+              <svg class="circular-progress" viewBox="0 0 120 120">
+                <circle class="bg-ring" cx="60" cy="60" r="50"></circle>
+                <circle class="progress-ring-light-orange" cx="60" cy="60" r="50" stroke-dasharray="314" stroke-dashoffset="140"></circle>
+                <circle class="progress-ring-mid-orange" cx="60" cy="60" r="50" stroke-dasharray="314" stroke-dashoffset="90"></circle>
+                <circle class="progress-ring-deep-orange" cx="60" cy="60" r="50" stroke-dasharray="314" stroke-dashoffset="40"></circle>
+              </svg>
+              <div class="circular-center-text">
+                <span class="center-percent" id="completionRate">0%</span>
+                <span class="center-label">Efficiency</span>
+              </div>
+            </div>
+            <div class="leg">
+              <span><b class="b-orange-light"></b> Sent (142)</span>
+              <span><b class="b-orange-mid"></b> Delivered (138)</span>
+              <span><b class="b-orange-deep"></b> Read (110)</span>
+            </div>
+          </div>
+
+          <!-- Room Availability Snapshot -->
+          <div class="card room-card">
+            <h3>Room Availability Snapshot</h3>
+            <ul class="room-list">
+              <li>
+                <div>
+                  <strong>AL-Auditorium (Main Block)</strong>
+                  <small>Cap: 350 • AV Enabled</small>
+                </div>
+                <span class="badge badge-green">Available</span>
+              </li>
+              <li>
+                <div>
+                  <strong>CSE Seminar Hall 2</strong>
+                  <small>Cap: 120 • Projector</small>
+                </div>
+                <span class="badge badge-orange">Booked until 2 PM</span>
+              </li>
+              <li>
+                <div>
+                  <strong>ESLA Discussion Room 1</strong>
+                  <small>Cap: 25 • Smartboard</small>
+                </div>
+                <span class="badge badge-green">Available</span>
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- Two Column Content Grid: Announcements & Pending Actions -->
+        <section class="row">
+          <!-- Recent Announcements -->
+          <div class="card">
+            <h3>Recent Announcements</h3>
+            <div class="list-stack" id="dashboardRecentAnnouncements">
+              <div class="list-item">
+                <span class="tag tag-mint">University</span>
+                <div>
+                  <strong>Hackathon 2026 Phase 1 Registrations Open</strong>
+                  <small>Posted by Academic Affairs • 2 hours ago</small>
+                </div>
+              </div>
+              <div class="list-item">
+                <span class="tag tag-mint">Department</span>
+                <div>
+                  <strong>CSE Lab Schedule Maintenance Notice</strong>
+                  <small>Posted by ITKM • Yesterday</small>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Pending Actions -->
+          <div class="card">
+            <h3>Pending Actions</h3>
+            <div class="list-stack" id="dashboardPendingActions">
+              <div class="list-item">
+                <span class="badge badge-orange">Approval</span>
+                <div>
+                  <strong>Lab Facility Request – B.Tech Major Project</strong>
+                  <small>Requested by Rahul M. • Awaiting Dean Review</small>
+                </div>
+              </div>
+              <div class="list-item">
+                <span class="badge badge-mint">Action Required</span>
+                <div>
+                  <strong>Submit Mid-Semester Evaluation Marks</strong>
+                  <small>Deadline: Oct 30, 2026</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Department Activity & Response Status Table -->
+        <section class="card dept-activity" id="deptActivitySection">
+          <div class="card-header">
+            <div>
+              <h3>Department Activity &amp; Response Status</h3>
+              <p class="card-subtitle">Real-time engagement metrics across academic units</p>
+            </div>
+            <span class="badge badge-mint">Live Metrics</span>
+          </div>
+
+          <div class="table-responsive">
+            <table class="activity-table">
+              <thead>
+                <tr>
+                  <th>Department</th>
+                  <th class="text-center">Total Sent</th>
+                  <th class="text-center">Avg Response Time</th>
+                  <th class="text-right">Resolution Rate</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="dept-name">
+                    <span class="dept-dot dot-mint"></span>
+                    <strong>Computer Science &amp; Engg</strong>
+                  </td>
+                  <td class="text-center"><span class="metric-num">342</span></td>
+                  <td class="text-center"><span class="badge badge-time">1.2 hrs</span></td>
+                  <td class="text-right">
+                    <div class="rate-wrap">
+                      <span class="rate-text rate-high">94%</span>
+                      <div class="rate-bar-bg"><div class="rate-bar-fill fill-mint" style="width: 94%;"></div></div>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="dept-name">
+                    <span class="dept-dot dot-orange"></span>
+                    <strong>Easwari Liberal Arts (ESLA)</strong>
+                  </td>
+                  <td class="text-center"><span class="metric-num">128</span></td>
+                  <td class="text-center"><span class="badge badge-time">2.1 hrs</span></td>
+                  <td class="text-right">
+                    <div class="rate-wrap">
+                      <span class="rate-text rate-mid">89%</span>
+                      <div class="rate-bar-bg"><div class="rate-bar-fill fill-orange" style="width: 89%;"></div></div>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="dept-name">
+                    <span class="dept-dot dot-mint"></span>
+                    <strong>Paari Business School (PSB)</strong>
+                  </td>
+                  <td class="text-center"><span class="metric-num">210</span></td>
+                  <td class="text-center"><span class="badge badge-time">1.5 hrs</span></td>
+                  <td class="text-right">
+                    <div class="rate-wrap">
+                      <span class="rate-text rate-high">92%</span>
+                      <div class="rate-bar-bg"><div class="rate-bar-fill fill-mint" style="width: 92%;"></div></div>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </section>
+    </main>
+    </div>
+  </div>
+
+  <script src="../api-client.js?v=profile-editor-20261101"></script>
+  <script>window.CampusSyncAPI.bootstrapPage([
+    '../dashboard-common.js?v=profile-editor-20261101', '../gemini-assistant/widget.js?v=api-response-fix-20261031'
+  ], ['inbox', 'announcements', 'events', 'rooms']);</script>
+</body>
+</html>

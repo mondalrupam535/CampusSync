@@ -1,0 +1,5 @@
+.env
+backend/target/
+backend/.idea/
+*.iml
+**/node_modules/

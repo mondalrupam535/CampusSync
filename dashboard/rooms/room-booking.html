@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>CampusSync — Room Booking</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="dashboard.css">
+  <link rel="stylesheet" href="room-booking.css">
+  <link rel="stylesheet" href="../dashboard-common.css?v=profile-editor-20261101">
+  <link rel="stylesheet" href="../gemini-assistant/widget.css">
+</head>
+<body data-page="room-booking">
+  <div class="ambient-bg" aria-hidden="true">
+    <div class="glow glow-1"></div>
+    <div class="glow glow-2"></div>
+    <div class="glow glow-3"></div>
+  </div>
+
+  <div class="app">
+    <aside class="side">
+      <div class="logo">
+        <img src="logo.jpg" alt="SRM AP Logo" class="logo-img">
+        <span>CampusSync</span>
+      </div>
+      <div class="menu">MAIN MENU</div>
+      <ul class="nav">
+        <li><a class="nav-btn" data-target="dashboard" href="../dashboard/dashboard.html">Dashboard</a></li>
+        <li><a class="nav-btn" data-target="inbox" href="../inbox/inbox.html">Inbox</a></li>
+        <li><a class="nav-btn" data-target="announcements" href="../announcement/announcements.html">Announcements</a></li>
+        <li><a class="nav-btn" data-target="events" href="../events/events.html">Events</a></li>
+        <li><a class="nav-btn on" data-target="room-booking" href="room-booking.html" aria-current="page">Room Booking</a></li>
+        <li><a class="nav-btn" data-target="approvals" href="../approvals/approvals.html">Approvals</a></li>
+      </ul>
+    </aside>
+
+    <main class="main">
+      <header class="top">
+        <div class="search-box">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+          <input type="text" id="roomSearchInput" placeholder="Search rooms, bookings, buildings, facilities...">
+        </div>
+
+        <div class="top-right">
+          <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle Theme">
+            <span class="theme-icon">🌙</span>
+            <span class="theme-text">Dark Mode</span>
+          </button>
+          <span class="sep"></span>
+          <button class="bell" id="notifBell" type="button" aria-label="View booking notifications" title="Notifications">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 9a6 6 0 0 1 12 0c0 6 2 7 2 7H4s2-1 2-7zM10 20a2 2 0 0 0 4 0"/></svg>
+          </button>
+          <span class="sep"></span>
+          <div class="user-menu-wrap">
+            <button class="user" id="userMenuBtn" type="button" aria-expanded="false" aria-controls="profileDropdown">
+              <span class="av">
+                <img id="userAvatarImage" alt="" hidden>
+                <span id="userInitials">--</span>
+              </span>
+              <span class="user-meta">
+                <span class="name" id="userName">Loading...</span>
+                <small class="role-badge" id="userRole">Role</small>
+              </span>
+            </button>
+            <div class="profile-dropdown" id="profileDropdown" aria-label="Profile details">
+              <div class="profile-card__header">
+                <span class="profile-card__avatar">
+                  <img id="profileAvatarImage" alt="" hidden>
+                  <span id="profileInitials">--</span>
+                </span>
+                <div class="profile-card__identity">
+                  <strong id="dropdownName">User Name</strong>
+                  <span class="profile-card__role" id="profileRole">Role</span>
+                  <span class="profile-card__department" id="profileCardDepartment"></span>
+                </div>
+              </div>
+              <div class="profile-details">
+                <div class="profile-details__section">
+                  <h2>Contact</h2>
+                  <div class="profile-detail profile-detail--wide" data-profile-detail="email"><span>Email</span><strong id="profileEmail"></strong></div>
+                  <div class="profile-detail" data-profile-detail="username"><span>Username</span><strong id="profileUsername"></strong></div>
+                  <div class="profile-detail" data-profile-detail="phone"><span>Phone</span><strong id="profilePhone"></strong></div>
+                </div>
+                <div class="profile-details__section">
+                  <h2>Campus</h2>
+                  <div class="profile-detail profile-detail--wide" data-profile-detail="department"><span>Department / unit</span><strong id="profileDepartment"></strong></div>
+                  <div class="profile-detail profile-detail--wide" data-profile-detail="designation"><span>Designation / post</span><strong id="profileDesignation"></strong></div>
+                  <div class="profile-detail" data-profile-detail="joining"><span>Joining year</span><strong id="profileJoining"></strong></div>
+                  <div class="profile-detail" data-profile-detail="reg"><span>Registration number</span><strong id="profileReg"></strong></div>
+                  <div class="profile-detail" data-profile-detail="school"><span>School</span><strong id="profileSchool"></strong></div>
+                  <div class="profile-detail" data-profile-detail="programme"><span>Programme</span><strong id="profileProgramme"></strong></div>
+                  <div class="profile-detail" data-profile-detail="spec"><span>Specialization</span><strong id="profileSpec"></strong></div>
+                  <div class="profile-detail" data-profile-detail="admission"><span>Admission year</span><strong id="profileAdmission"></strong></div>
+                  <div class="profile-detail" data-profile-detail="acyear"><span>Academic year</span><strong id="profileAcademicYear"></strong></div>
+                  <div class="profile-detail" data-profile-detail="section"><span>Section</span><strong id="profileSection"></strong></div>
+                  <div class="profile-detail" data-profile-detail="employeeId"><span>Employee ID</span><strong id="profileEmployeeId"></strong></div>
+                  <div class="profile-detail" data-profile-detail="office"><span>Office / room</span><strong id="profileOffice"></strong></div>
+                </div>
+              </div>
+              <div class="profile-card__footer">
+                <button id="logoutBtn" class="logout-btn" type="button">Log out</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <section class="content rb-content">
+        <div class="rb-top-row">
+          <div>
+            <h1>Room Booking</h1>
+            <p class="subhead">Find spaces and manage reservations. A request is not a booking until it is confirmed.</p>
+          </div>
+          <div class="rb-top-actions">
+            <button class="btn btn-primary" id="newRequestBtn"><span>➕</span> New Booking Request</button>
+          </div>
+        </div>
+        <!-- Summary cards -->
+        <section class="stats-grid-rb">
+          <div class="card stat-card" data-stat="upcoming">
+            <span class="stat-icon mint-bg">📅</span>
+            <div><div class="stat-num" id="stUpcoming">0</div><div class="stat-label">My Upcoming Bookings</div></div>
+          </div>
+          <div class="card stat-card" data-stat="pending">
+            <span class="stat-icon orange-bg">⏳</span>
+            <div><div class="stat-num" id="stPending">0</div><div class="stat-label">Pending Approval</div></div>
+          </div>
+          <div class="card stat-card" data-stat="available">
+            <span class="stat-icon green-bg">🏫</span>
+            <div><div class="stat-num" id="stAvailable">0</div><div class="stat-label">Spaces with no recorded conflict</div></div>
+          </div>
+          <div class="card stat-card" data-stat="attention">
+            <span class="stat-icon blue-bg">🔔</span>
+            <div><div class="stat-num" id="stAttention">0</div><div class="stat-label">Needs Attention</div></div>
+          </div>
+        </section>
+
+        <div class="card attention-card" id="attentionPanel" style="display:none;"></div>
+
+        <!-- Find a Room -->
+        <div class="card find-card" id="findCard">
+          <h3>Find a Room</h3>
+          <div class="find-grid">
+            <div class="field"><label for="sDate">Date</label><input type="date" id="sDate" class="input"></div>
+            <div class="field"><label for="sStart">Start time</label><input type="time" id="sStart" class="input"></div>
+            <div class="field"><label for="sEnd">End time</label><input type="time" id="sEnd" class="input"></div>
+            <div class="field"><label for="sType">Room type</label><select id="sType" class="input"></select></div>
+            <div class="field"><label for="sCap">Capacity (min.)</label><input type="number" id="sCap" class="input" min="1" placeholder="Attendees"></div>
+            <div class="field"><label for="sBuilding">Building</label><select id="sBuilding" class="input"></select></div>
+          </div>
+          <div class="field">
+            <label>Facilities</label>
+            <div class="chk-row" id="sFacilities"></div>
+          </div>
+          <div class="find-actions">
+            <button class="btn btn-primary" id="checkBtn">Check Availability</button>
+            <button class="btn btn-outline" id="resetSearchBtn">Reset</button>
+          </div>
+          <div id="searchResults" class="search-results"></div>
+        </div>
+
+        <!-- Calendar / My Bookings / Requests -->
+        <div class="card rb-main-card">
+          <div class="rb-tabs-row">
+            <div class="ev-seg" id="mainTabs" role="group" aria-label="Sections">
+              <button data-tab="calendar" class="on">📅 Availability Calendar</button>
+              <button data-tab="bookings">📋 My Bookings</button>
+              <button data-tab="requests" id="tabRequests" style="display:none;">🛡 Booking Requests</button>
+            </div>
+          </div>
+
+          <!-- Calendar pane -->
+          <div id="calPane">
+            <div class="cal-controls">
+              <div class="cal-nav">
+                <button class="btn btn-outline btn-sm-x" id="calPrev" aria-label="Previous">‹</button>
+                <button class="btn btn-outline btn-sm-x" id="calToday">Today</button>
+                <button class="btn btn-outline btn-sm-x" id="calNext" aria-label="Next">›</button>
+                <h3 id="calTitle">Day</h3>
+              </div>
+              <div class="cal-right">
+                <select id="cType" class="input input-sm" aria-label="Room type"></select>
+                <select id="cRoom" class="input input-sm" aria-label="Room"></select>
+                <div class="ev-seg" id="calModes" role="group" aria-label="Range">
+                  <button data-mode="day" class="on">Day</button>
+                  <button data-mode="week">Week</button>
+                  <button data-mode="month">Month</button>
+                </div>
+              </div>
+            </div>
+            <div class="legend-row">
+                <span><i class="lg free"></i> No booking conflict recorded</span>
+              <span><i class="lg occ"></i> Occupied (confirmed)</span>
+              <span><i class="lg pend"></i> Pending request</span>
+              <span><i class="lg closed"></i> Closed / maintenance</span>
+              <span><i class="lg past"></i> Past</span>
+            </div>
+            <div id="calBody"></div>
+          </div>
+
+          <!-- My Bookings pane -->
+          <div id="bookPane" style="display:none;">
+            <div class="filter-tabs" id="bookFilters" role="group" aria-label="Status filter"></div>
+            <div id="bookList"></div>
+          </div>
+
+          <!-- Booking Requests pane -->
+          <div id="reqPane" style="display:none;">
+            <p class="req-note">Requests waiting for a decision. Approval authority is set in <code>APPROVAL_POLICY</code> (room-booking.js) and must be enforced by the backend.</p>
+            <div id="reqList"></div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Booking request modal -->
+  <div class="modal-overlay" id="bookingModal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 id="bHeading">Request a Room</h3>
+        <button class="modal-close" id="closeBookingBtn" aria-label="Close">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="form-errors" id="formErrors" style="display:none;"></div>
+
+        <div class="field-row">
+          <div class="field"><label for="bTitle">Event / title *</label><input type="text" id="bTitle" class="input" placeholder="Name of the activity"></div>
+          <div class="field"><label for="bPurpose">Purpose *</label><select id="bPurpose" class="input"></select></div>
+        </div>
+
+        <div class="field"><label for="bRoom">Room *</label><select id="bRoom" class="input"></select></div>
+
+        <div class="field-row3">
+          <div class="field"><label for="bDate">Date *</label><input type="date" id="bDate" class="input"></div>
+          <div class="field"><label for="bStart">Start time *</label><input type="time" id="bStart" class="input"></div>
+          <div class="field"><label for="bEnd">End time *</label><input type="time" id="bEnd" class="input"></div>
+        </div>
+
+        <div class="field-row">
+          <div class="field"><label for="bSetup">Setup time (minutes)</label><input type="number" id="bSetup" class="input" min="0" max="240" step="5" value="0"></div>
+          <div class="field"><label for="bCleanup">Cleanup time (minutes)</label><input type="number" id="bCleanup" class="input" min="0" max="240" step="5" value="0"></div>
+        </div>
+
+        <div class="availability-box" id="availabilityBox"></div>
+
+        <div class="field-row">
+          <div class="field"><label for="bAttendance">Expected attendance *</label><input type="number" id="bAttendance" class="input" min="1" placeholder="Number of people"></div>
+          <div class="field"><label for="bDept">Organizing department *</label><select id="bDept" class="input"></select></div>
+        </div>
+
+        <div class="field-row">
+          <div class="field"><label for="bOrganizer">Organizer / responsible person *</label><input type="text" id="bOrganizer" class="input"></div>
+          <div class="field"><label for="bContact">Contact details *</label><input type="text" id="bContact" class="input" placeholder="Email or phone"></div>
+        </div>
+
+        <div class="field">
+          <label>Required facilities</label>
+          <div class="chk-row" id="bFacilities"></div>
+        </div>
+
+        <div class="field"><label for="bEvent">Related CampusSync event (optional)</label><select id="bEvent" class="input"></select></div>
+
+        <div class="field"><label for="bNotes">Additional notes</label><textarea id="bNotes" class="input" style="height:80px;resize:vertical;" placeholder="Special arrangements, seating layout, access needs..."></textarea></div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline" id="bCancelBtn">Cancel</button>
+        <button class="btn btn-outline" id="bDraftBtn">Save Draft</button>
+        <button class="btn btn-primary" id="bSubmitBtn">Submit Booking Request</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Booking details modal -->
+  <div class="modal-overlay" id="detailsModal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 id="detailsTitle">Booking</h3>
+        <button class="modal-close" id="closeDetailsBtn" aria-label="Close">&times;</button>
+      </div>
+      <div class="modal-body" id="detailsBody"></div>
+      <div class="details-footer" id="detailsFooter"></div>
+    </div>
+  </div>
+
+  <!-- Room details modal -->
+  <div class="modal-overlay" id="roomModal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 id="roomTitle">Room</h3>
+        <button class="modal-close" id="closeRoomBtn" aria-label="Close">&times;</button>
+      </div>
+      <div class="modal-body" id="roomBody"></div>
+      <div class="details-footer" id="roomFooter"></div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="../api-client.js?v=profile-editor-20261101"></script>
+  <script>window.CampusSyncAPI.bootstrapPage([
+    '../departments.js', '../dashboard-common.js?v=profile-editor-20261101', 'room-directory.js?v=room-directory-20261101', 'room-booking.js?v=room-directory-20261101', '../gemini-assistant/widget.js?v=api-response-fix-20261031'
+  ], ['rooms', 'events']);</script>
+</body>
+</html>

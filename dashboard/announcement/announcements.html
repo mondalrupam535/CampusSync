@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>CampusSync — Announcements</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="dashboard.css">
+  <link rel="stylesheet" href="announcements.css">
+  <link rel="stylesheet" href="../dashboard-common.css?v=profile-editor-20261101">
+  <link rel="stylesheet" href="../gemini-assistant/widget.css">
+</head>
+<body data-page="announcements">
+  <!-- Ambient Glassmorphism Background Glows -->
+  <div class="ambient-bg" aria-hidden="true">
+    <div class="glow glow-1"></div>
+    <div class="glow glow-2"></div>
+    <div class="glow glow-3"></div>
+  </div>
+
+  <div class="app">
+    <!-- Left Navigation Sidebar -->
+    <aside class="side">
+      <div class="logo">
+        <img src="logo.jpg" alt="SRM AP Logo" class="logo-img">
+        <span>CampusSync</span>
+      </div>
+      <div class="menu">MAIN MENU</div>
+      <ul class="nav">
+        <li><a class="nav-btn" data-target="dashboard" href="../dashboard/dashboard.html">Dashboard</a></li>
+        <li><a class="nav-btn" data-target="inbox" href="../inbox/inbox.html">Inbox</a></li>
+        <li><a class="nav-btn on" data-target="announcements" href="announcements.html" aria-current="page">Announcements</a></li>
+        <li><a class="nav-btn" data-target="events" href="../events/events.html">Events</a></li>
+        <li><a class="nav-btn" data-target="room-booking" href="../rooms/room-booking.html">Room Booking</a></li>
+        <li><a class="nav-btn" data-target="approvals" href="../approvals/approvals.html">Approvals</a></li>
+      </ul>
+    </aside>
+
+    <!-- Main Workspace -->
+    <main class="main">
+      <!-- Top Navigation & Profile Bar -->
+      <header class="top">
+        <div class="search-box">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+          <input type="text" id="announcementsSearchInput" placeholder="Search notices by title, sender, department...">
+        </div>
+
+        <div class="top-right">
+          <!-- Theme Switcher Button -->
+          <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle Theme">
+            <span class="theme-icon">🌙</span>
+            <span class="theme-text">Dark Mode</span>
+          </button>
+
+          <span class="sep"></span>
+
+          <button class="bell" id="notifBell" type="button" aria-label="View action-required notices" title="Notifications">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 9a6 6 0 0 1 12 0c0 6 2 7 2 7H4s2-1 2-7zM10 20a2 2 0 0 0 4 0"/></svg>
+          </button>
+          <span class="sep"></span>
+
+          <!-- User Profile Dropdown Menu -->
+          <div class="user-menu-wrap">
+            <button class="user" id="userMenuBtn" type="button" aria-expanded="false" aria-controls="profileDropdown">
+              <span class="av">
+                <img id="userAvatarImage" alt="" hidden>
+                <span id="userInitials">--</span>
+              </span>
+              <span class="user-meta">
+                <span class="name" id="userName">Loading...</span>
+                <small class="role-badge" id="userRole">Role</small>
+              </span>
+            </button>
+            <div class="profile-dropdown" id="profileDropdown" aria-label="Profile details">
+              <div class="profile-card__header">
+                <span class="profile-card__avatar">
+                  <img id="profileAvatarImage" alt="" hidden>
+                  <span id="profileInitials">--</span>
+                </span>
+                <div class="profile-card__identity">
+                  <strong id="dropdownName">User Name</strong>
+                  <span class="profile-card__role" id="profileRole">Role</span>
+                  <span class="profile-card__department" id="profileCardDepartment"></span>
+                </div>
+              </div>
+              <div class="profile-details">
+                <div class="profile-details__section">
+                  <h2>Contact</h2>
+                  <div class="profile-detail profile-detail--wide" data-profile-detail="email"><span>Email</span><strong id="profileEmail"></strong></div>
+                  <div class="profile-detail" data-profile-detail="username"><span>Username</span><strong id="profileUsername"></strong></div>
+                  <div class="profile-detail" data-profile-detail="phone"><span>Phone</span><strong id="profilePhone"></strong></div>
+                </div>
+                <div class="profile-details__section">
+                  <h2>Campus</h2>
+                  <div class="profile-detail profile-detail--wide" data-profile-detail="department"><span>Department / unit</span><strong id="profileDepartment"></strong></div>
+                  <div class="profile-detail profile-detail--wide" data-profile-detail="designation"><span>Designation / post</span><strong id="profileDesignation"></strong></div>
+                  <div class="profile-detail" data-profile-detail="joining"><span>Joining year</span><strong id="profileJoining"></strong></div>
+                  <div class="profile-detail" data-profile-detail="reg"><span>Registration number</span><strong id="profileReg"></strong></div>
+                  <div class="profile-detail" data-profile-detail="school"><span>School</span><strong id="profileSchool"></strong></div>
+                  <div class="profile-detail" data-profile-detail="programme"><span>Programme</span><strong id="profileProgramme"></strong></div>
+                  <div class="profile-detail" data-profile-detail="spec"><span>Specialization</span><strong id="profileSpec"></strong></div>
+                  <div class="profile-detail" data-profile-detail="admission"><span>Admission year</span><strong id="profileAdmission"></strong></div>
+                  <div class="profile-detail" data-profile-detail="acyear"><span>Academic year</span><strong id="profileAcademicYear"></strong></div>
+                  <div class="profile-detail" data-profile-detail="section"><span>Section</span><strong id="profileSection"></strong></div>
+                  <div class="profile-detail" data-profile-detail="employeeId"><span>Employee ID</span><strong id="profileEmployeeId"></strong></div>
+                  <div class="profile-detail" data-profile-detail="office"><span>Office / room</span><strong id="profileOffice"></strong></div>
+                </div>
+              </div>
+              <div class="profile-card__footer">
+                <button id="logoutBtn" class="logout-btn" type="button">Log out</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- Announcements Main Content Area -->
+      <section class="content announcements-content">
+        <!-- Header row with title & Create Announcement button -->
+        <div class="announcements-top-row">
+          <div>
+            <h1>Announcements</h1>
+            <p class="subhead">Create, publish and track official university notices.</p>
+          </div>
+          <button class="btn btn-primary create-announcement-btn" id="openCreateModalBtn" type="button">
+            <svg class="create-announcement-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            <span>Create Announcement</span>
+            <span class="create-announcement-badge" aria-hidden="true">New</span>
+          </button>
+        </div>
+
+        <!-- Statistics Cards Grid -->
+        <section class="stats-grid-announcements">
+          <div class="card stat-card" data-stat-filter="published">
+            <span class="stat-icon mint-bg">📣</span>
+            <div>
+              <div class="stat-num" id="countPublished">0</div>
+              <div class="stat-label">Published</div>
+            </div>
+          </div>
+          <div class="card stat-card" data-stat-filter="pending">
+            <span class="stat-icon orange-bg">⏳</span>
+            <div>
+              <div class="stat-num" id="countPending">0</div>
+              <div class="stat-label">Awaiting approval</div>
+            </div>
+          </div>
+          <div class="card stat-card" data-stat-filter="draft">
+            <span class="stat-icon blue-bg">📝</span>
+            <div>
+              <div class="stat-num" id="countDrafts">0</div>
+              <div class="stat-label">Drafts</div>
+            </div>
+          </div>
+          <div class="card stat-card" data-stat-filter="action">
+            <span class="stat-icon green-bg">📋</span>
+            <div>
+              <div class="stat-num" id="countAction">0</div>
+              <div class="stat-label">Action required</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Filter Tabs Bar -->
+        <div class="announcements-filter-bar">
+          <div class="filter-tabs" role="group" aria-label="Filters">
+            <button class="filter-tab on" data-filter="all">All Notices</button>
+            <button class="filter-tab" data-filter="published">Published</button>
+            <button class="filter-tab" data-filter="pending">Pending Approval</button>
+            <button class="filter-tab" data-filter="draft">Drafts</button>
+            <button class="filter-tab" data-filter="action">Action Required</button>
+          </div>
+        </div>
+
+        <!-- Two-Panel Split Layout -->
+        <div class="announcements-split-layout">
+          <!-- Left: Announcements List -->
+          <div class="card announcement-list-card" id="announcementListContainer"></div>
+
+          <!-- Right: Announcement Details & Recipient Tracking Panel -->
+          <div class="card announcement-reader-card" id="announcementReaderPanel">
+            <div class="reader-empty-state" id="announcementEmptyState">
+              <div class="empty-icon">📢</div>
+              <h3>Select an announcement</h3>
+              <p>Choose any notice from the left to view full details, recipient distribution stats, and verification tracking.</p>
+            </div>
+
+            <div class="reader-content-wrap" id="announcementReaderContent" style="display: none;">
+              <div class="reader-header">
+                <div class="reader-title-row">
+                  <h2 id="readerAnnTitle">Title</h2>
+                  <span class="badge badge-mint" id="readerAnnStatus">Published</span>
+                </div>
+                <div class="reader-sender-info">
+                  <span class="sender-avatar" id="readerAnnAv">AA</span>
+                  <div>
+                    <strong id="readerAnnIssuer">Issuer</strong>
+                    <small id="readerAnnMeta">Department • Date</small>
+                  </div>
+                </div>
+              </div>
+
+              <div class="reader-badges-row" id="readerAnnBadges"></div>
+
+              <div class="reader-body" id="readerAnnBody"></div>
+              <div class="reader-attachment" id="readerAnnAttachment" style="display: none;"></div>
+
+              <div class="tracking-metrics-box" id="trackingMetricsBox">
+                <h4>Recipient Tracking</h4>
+                <div class="metrics-grid">
+                  <div class="metric-item">
+                    <span class="m-val" id="statTotalRecipients">0</span>
+                    <span class="m-lbl">Recipients</span>
+                  </div>
+                  <div class="metric-item">
+                    <span class="m-val" id="statDelivered">0</span>
+                    <span class="m-lbl">Delivered</span>
+                  </div>
+                  <div class="metric-item">
+                    <span class="m-val" id="statRead">0</span>
+                    <span class="m-lbl">Read</span>
+                  </div>
+                  <div class="metric-item">
+                    <span class="m-val" id="statAcknowledged">0</span>
+                    <span class="m-lbl">Acknowledged</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Acknowledgement Button if Required -->
+              <div class="reader-action-box" id="announcementActionBox" style="display: none;">
+                <div class="action-box-title">Acknowledgement Required</div>
+                <button class="btn btn-mint" id="acknowledgeNoticeBtn">✓ Acknowledge Notice</button>
+              </div>
+
+              <!-- Reader Toolbar Actions -->
+              <div class="reader-toolbar">
+                <button class="tool-btn" id="editNoticeBtn">✏️ Edit</button>
+                <button class="tool-btn" id="withdrawNoticeBtn">⚠️ Withdraw</button>
+                <button class="tool-btn" id="archiveNoticeBtn">📦 Archive</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Create / Edit Announcement Modal -->
+  <div class="modal-overlay" id="createAnnouncementModal">
+    <div class="modal-card modal-large">
+      <div class="modal-header">
+        <div class="modal-title-group">
+          <span class="modal-kicker">ANNOUNCEMENT WORKSPACE</span>
+          <h3 id="modalHeading">Create Official Announcement</h3>
+          <p class="modal-description">Share a clear, timely update with the right people across campus.</p>
+        </div>
+        <button class="modal-close" id="closeCreateModalBtn" aria-label="Close">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="field">
+          <label for="createTitle">Announcement Title (optional — AI can create one)</label>
+          <input type="text" id="createTitle" class="input" maxlength="160" placeholder="e.g. Faculty Meeting Notice">
+          <small class="field-hint">Use a short title that makes the purpose easy to understand.</small>
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label for="createPriority">Priority</label>
+            <select id="createPriority" class="input">
+              <option value="Normal">Normal</option>
+              <option value="Important">Important</option>
+              <option value="Urgent">Urgent</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="createSchedule">Schedule Publication (Optional)</label>
+            <input type="datetime-local" id="createSchedule" class="input">
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="createContent">Announcement Content *</label>
+          <textarea id="createContent" class="input compose-textarea" maxlength="3500" placeholder="Write the complete notice, instructions and deadlines..."></textarea>
+          <small class="field-hint">Include key details, dates, deadlines, and any action recipients need to take.</small>
+        </div>
+
+        <section class="ai-announcement-panel" aria-labelledby="aiAnnouncementHeading">
+          <div class="ai-announcement-heading">
+            <div>
+              <span class="ai-pill">Gemini AI</span>
+              <strong id="aiAnnouncementHeading">Improve message &amp; find departments</strong>
+            </div>
+            <button class="btn btn-mint" id="optimizeAnnouncementBtn" type="button">Optimize with AI</button>
+          </div>
+          <p class="ai-announcement-status" id="aiAnnouncementStatus" role="status" aria-live="polite">
+            Write your announcement, then let AI polish it and select the relevant departments automatically.
+          </p>
+          <div class="ai-department-results" id="aiDepartmentResults" aria-label="AI-selected departments" hidden></div>
+        </section>
+
+        <div class="field-row">
+          <div class="field">
+            <label for="createAttachment">Attach Documents / Images</label>
+            <input type="file" id="createAttachment" class="input file-input">
+            <small class="field-hint">Add a document or image to support your announcement.</small>
+          </div>
+          <div class="field checkbox-field">
+            <label for="createAckRequired">
+              <input type="checkbox" id="createAckRequired">
+              <span class="acknowledgement-copy">
+                <strong>Require acknowledgement</strong>
+                <small>Recipients will be asked to confirm they have read this notice.</small>
+              </span>
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline" id="saveAnnouncementDraftBtn">Save Draft</button>
+        <button class="btn btn-outline" id="previewAnnouncementBtn">Preview</button>
+        <button class="btn btn-primary" id="submitAnnouncementBtn">Submit for Approval / Publish</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="../api-client.js?v=profile-editor-20261101"></script>
+  <script>window.CampusSyncAPI.bootstrapPage([
+    '../departments.js', '../dashboard-common.js?v=profile-editor-20261101', 'announcements.js', '../gemini-assistant/widget.js?v=api-response-fix-20261031'
+  ], ['announcements']);</script>
+</body>
+</html>

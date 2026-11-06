@@ -1,0 +1,20 @@
+services:
+  postgres:
+    image: postgres:16
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-campussync}
+      POSTGRES_USER: ${POSTGRES_USER:-campussync}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-campussync_dev_only}
+    ports:
+      - "5432:5432"
+    volumes:
+      - campussync-postgres:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-campussync} -d ${POSTGRES_DB:-campussync}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  campussync-postgres:

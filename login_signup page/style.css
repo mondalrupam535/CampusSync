@@ -1,0 +1,400 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --dark-teal: #335954;
+  --dark-teal-hover: #26433f;
+  --bg-light: #f6f8f8;
+  --text-dark: #222222;
+  --text-gray: #777777;
+  --input-bg: #f9fbfb;
+  --border-color: #e2e8e8;
+}
+
+body {
+  background-color: var(--bg-light);
+  font-family: 'Poppins', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Main Container */
+.container {
+  background-color: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.08), 0 10px 10px rgba(0, 0, 0, 0.04);
+  position: relative;
+  overflow: hidden;
+  width: 900px;
+  max-width: 95%;
+  min-height: 580px;
+}
+
+/* ================= BRANDING STYLES (INSIDE FORMS) ================= */
+.brand-header {
+  position: absolute;
+  top: 25px;
+  left: 35px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  z-index: 10;
+}
+
+.brand-logo {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+}
+
+.brand-name {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--dark-teal);
+  letter-spacing: 0.5px;
+}
+
+/* Forms general layout */
+.form-container {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  transition: all 0.6s ease-in-out;
+}
+
+.form-container form {
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 40px 50px 0 50px; /* Added top padding to make space for the logo */
+  height: 100%;
+  text-align: center;
+  position: relative; /* Allows absolute positioning of brand-header inside */
+}
+
+.form-container h1 {
+  font-weight: 600;
+  color: var(--text-dark);
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+}
+
+.auth-status {
+  min-height: 18px;
+  margin: -12px 0 4px;
+  color: #b42318;
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+/* Divider Styling */
+.divider {
+  width: 100%;
+  text-align: center;
+  margin: 14px 0 10px 0;
+  position: relative;
+}
+
+.divider span {
+  font-size: 13px;
+  color: var(--text-gray);
+  background: #ffffff;
+  padding: 0 10px;
+}
+
+/* Inputs */
+.form-container input {
+  background-color: var(--input-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 25px;
+  padding: 12px 20px;
+  margin: 6px 0;
+  width: 100%;
+  outline: none;
+  font-size: 14px;
+  color: var(--text-dark);
+  transition: border-color 0.3s;
+}
+
+.form-container input:focus {
+  border-color: var(--dark-teal);
+}
+
+.form-container input::placeholder {
+  color: #a8b3b3;
+}
+
+.forgot-password {
+  color: var(--text-gray);
+  font-size: 13px;
+  text-decoration: none;
+  margin: 10px 0 14px 0;
+  transition: color 0.2s;
+}
+
+.forgot-password:hover {
+  color: var(--dark-teal);
+}
+
+.auth-switch {
+  margin-top: 12px;
+  color: var(--text-gray);
+  font-size: 12px;
+}
+
+.auth-switch__button {
+  border: 0;
+  padding: 0;
+  background: none;
+  color: var(--dark-teal);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.google-password-prompt {
+  margin: -4px 0 8px;
+  color: var(--text-gray);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.google-password-prompt[hidden] {
+  display: none;
+}
+
+.sign-up-container form.google-registration-pending .btn-google,
+.sign-up-container form.google-registration-pending .divider,
+.sign-up-container form.google-registration-pending input[type="text"],
+.sign-up-container form.google-registration-pending input[type="email"] {
+  display: none;
+}
+
+/* ================= NORMAL FLAT PRIMARY BUTTON ================= */
+.btn-primary {
+  border-radius: 25px;
+  border: none;
+  background-color: var(--dark-teal);
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 12px 45px;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.1s ease;
+}
+
+.btn-primary:hover {
+  background-color: var(--dark-teal-hover);
+}
+
+.btn-primary:active {
+  transform: scale(0.98);
+}
+
+/* ================= GOOGLE BUTTON ================= */
+.btn-google {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding: 11px 20px;
+  background-color: #ffffff;
+  border: 1px solid var(--border-color);
+  border-radius: 25px;
+  color: #444444;
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  transition: all 0.2s ease;
+}
+
+.btn-google:hover {
+  background-color: #fcfcfc;
+  border-color: #d0d7d7;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  transform: translateY(-1px);
+}
+
+.btn-google:active {
+  transform: translateY(0);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.google-icon {
+  color: #ea4335;
+  font-size: 16px;
+}
+
+/* ================= GHOST BUTTON ================= */
+.btn-ghost {
+  border-radius: 25px;
+  border: 1.5px solid #ffffff;
+  background-color: transparent;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 10px 40px;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: background-color 0.3s, color 0.3s, transform 0.1s ease;
+}
+
+.btn-ghost:hover {
+  background-color: #ffffff;
+  color: var(--dark-teal);
+}
+
+.btn-ghost:active {
+  transform: scale(0.98);
+}
+
+/* Panel Positions */
+.sign-in-container {
+  left: 0;
+  width: 50%;
+  z-index: 2;
+}
+
+.sign-up-container {
+  left: 0;
+  width: 50%;
+  opacity: 0;
+  z-index: 1;
+}
+
+/* Active State Animations */
+.container.right-panel-active .sign-in-container {
+  transform: translateX(100%);
+  opacity: 0;
+  z-index: 1;
+}
+
+.container.right-panel-active .sign-up-container {
+  transform: translateX(100%);
+  opacity: 1;
+  z-index: 5;
+  animation: show 0.6s;
+}
+
+@keyframes show {
+  0%, 49.99% {
+    opacity: 0;
+    z-index: 1;
+  }
+  50%, 100% {
+    opacity: 1;
+    z-index: 5;
+  }
+}
+
+/* Overlay / Right Side Panel Container */
+.overlay-container {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 50%;
+  height: 100%;
+  overflow: hidden;
+  transition: transform 0.6s ease-in-out;
+  z-index: 100;
+}
+
+.container.right-panel-active .overlay-container {
+  transform: translateX(-100%);
+}
+
+.overlay {
+  background-color: #000000;
+  color: #ffffff;
+  position: relative;
+  left: -100%;
+  height: 100%;
+  width: 200%;
+  transform: translateX(0);
+  transition: transform 0.6s ease-in-out;
+  overflow: hidden;
+}
+
+.container.right-panel-active .overlay {
+  transform: translateX(50%);
+}
+
+/* ================= FIXED BACKGROUND VIDEO STYLES ================= */
+.bg-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  z-index: 0;
+}
+
+/* Panels sit above video */
+.overlay-panel {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0 40px;
+  text-align: center;
+  top: 0;
+  height: 100%;
+  width: 50%;
+  transform: translateX(0);
+  transition: transform 0.6s ease-in-out;
+  z-index: 2;
+}
+
+.overlay-panel h1,
+.overlay-panel p {
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.overlay-panel h1 {
+  font-size: 2.2rem;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.overlay-panel p {
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1.6;
+  opacity: 0.9;
+  max-width: 300px;
+}
+
+.overlay-left {
+  transform: translateX(-20%);
+}
+
+.container.right-panel-active .overlay-left {
+  transform: translateX(0);
+}
+
+.overlay-right {
+  right: 0;
+  transform: translateX(0);
+}
+
+.container.right-panel-active .overlay-right {
+  transform: translateX(20%);
+}

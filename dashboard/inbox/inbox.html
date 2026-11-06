@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>CampusSync — Inbox</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="dashboard.css">
+  <link rel="stylesheet" href="inbox.css">
+  <link rel="stylesheet" href="../dashboard-common.css?v=profile-editor-20261101">
+  <link rel="stylesheet" href="../gemini-assistant/widget.css">
+</head>
+<body data-page="inbox">
+  <!-- Ambient Glassmorphism Background Glows -->
+  <div class="ambient-bg" aria-hidden="true">
+    <div class="glow glow-1"></div>
+    <div class="glow glow-2"></div>
+    <div class="glow glow-3"></div>
+  </div>
+
+  <div class="app">
+    <!-- Left Navigation Sidebar -->
+    <aside class="side">
+      <div class="logo">
+        <img src="logo.jpg" alt="SRM AP Logo" class="logo-img">
+        <span>CampusSync</span>
+      </div>
+      <div class="menu">MAIN MENU</div>
+      <ul class="nav">
+        <li><a class="nav-btn" data-target="dashboard" href="../dashboard/dashboard.html">Dashboard</a></li>
+        <li><a class="nav-btn on" data-target="inbox" href="inbox.html" aria-current="page">Inbox</a></li>
+        <li><a class="nav-btn" data-target="announcements" href="../announcement/announcements.html">Announcements</a></li>
+        <li><a class="nav-btn" data-target="events" href="../events/events.html">Events</a></li>
+        <li><a class="nav-btn" data-target="room-booking" href="../rooms/room-booking.html">Room Booking</a></li>
+        <li><a class="nav-btn" data-target="approvals" href="../approvals/approvals.html">Approvals</a></li>
+      </ul>
+    </aside>
+
+    <!-- Main Workspace -->
+    <main class="main">
+      <!-- Top Navigation & Profile Bar -->
+      <header class="top">
+        <div class="search-box">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+          <input type="text" id="inboxSearchInput" placeholder="Search messages, senders, keywords...">
+        </div>
+
+        <div class="top-right">
+          <!-- Theme Switcher Button -->
+          <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle Theme">
+            <span class="theme-icon">🌙</span>
+            <span class="theme-text">Dark Mode</span>
+          </button>
+
+          <span class="sep"></span>
+
+          <button class="bell" id="notifBell" type="button" aria-label="View unread messages" title="Notifications">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 9a6 6 0 0 1 12 0c0 6 2 7 2 7H4s2-1 2-7zM10 20a2 2 0 0 0 4 0"/></svg>
+          </button>
+          <span class="sep"></span>
+          
+          <!-- User Profile Dropdown Menu -->
+          <div class="user-menu-wrap">
+            <button class="user" id="userMenuBtn" type="button" aria-expanded="false" aria-controls="profileDropdown">
+              <span class="av">
+                <img id="userAvatarImage" alt="" hidden>
+                <span id="userInitials">--</span>
+              </span>
+              <span class="user-meta">
+                <span class="name" id="userName">Loading...</span>
+                <small class="role-badge" id="userRole">Role</small>
+              </span>
+            </button>
+            <div class="profile-dropdown" id="profileDropdown" aria-label="Profile details">
+              <div class="profile-card__header">
+                <span class="profile-card__avatar">
+                  <img id="profileAvatarImage" alt="" hidden>
+                  <span id="profileInitials">--</span>
+                </span>
+                <div class="profile-card__identity">
+                  <strong id="dropdownName">User Name</strong>
+                  <span class="profile-card__role" id="profileRole">Role</span>
+                  <span class="profile-card__department" id="profileCardDepartment"></span>
+                </div>
+              </div>
+              <div class="profile-details">
+                <div class="profile-details__section">
+                  <h2>Contact</h2>
+                  <div class="profile-detail profile-detail--wide" data-profile-detail="email"><span>Email</span><strong id="profileEmail"></strong></div>
+                  <div class="profile-detail" data-profile-detail="username"><span>Username</span><strong id="profileUsername"></strong></div>
+                  <div class="profile-detail" data-profile-detail="phone"><span>Phone</span><strong id="profilePhone"></strong></div>
+                </div>
+                <div class="profile-details__section">
+                  <h2>Campus</h2>
+                  <div class="profile-detail profile-detail--wide" data-profile-detail="department"><span>Department / unit</span><strong id="profileDepartment"></strong></div>
+                  <div class="profile-detail profile-detail--wide" data-profile-detail="designation"><span>Designation / post</span><strong id="profileDesignation"></strong></div>
+                  <div class="profile-detail" data-profile-detail="joining"><span>Joining year</span><strong id="profileJoining"></strong></div>
+                  <div class="profile-detail" data-profile-detail="reg"><span>Registration number</span><strong id="profileReg"></strong></div>
+                  <div class="profile-detail" data-profile-detail="school"><span>School</span><strong id="profileSchool"></strong></div>
+                  <div class="profile-detail" data-profile-detail="programme"><span>Programme</span><strong id="profileProgramme"></strong></div>
+                  <div class="profile-detail" data-profile-detail="spec"><span>Specialization</span><strong id="profileSpec"></strong></div>
+                  <div class="profile-detail" data-profile-detail="admission"><span>Admission year</span><strong id="profileAdmission"></strong></div>
+                  <div class="profile-detail" data-profile-detail="acyear"><span>Academic year</span><strong id="profileAcademicYear"></strong></div>
+                  <div class="profile-detail" data-profile-detail="section"><span>Section</span><strong id="profileSection"></strong></div>
+                  <div class="profile-detail" data-profile-detail="employeeId"><span>Employee ID</span><strong id="profileEmployeeId"></strong></div>
+                  <div class="profile-detail" data-profile-detail="office"><span>Office / room</span><strong id="profileOffice"></strong></div>
+                </div>
+              </div>
+              <div class="profile-card__footer">
+                <button id="logoutBtn" class="logout-btn" type="button">Log out</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- Inbox Main Content Area -->
+      <section class="content inbox-content">
+        <!-- Header row with title & Compose button -->
+        <div class="inbox-top-row">
+          <div>
+            <h1>Inbox <span class="unread-badge-count" id="unreadCountBadge">0 unread</span></h1>
+            <p class="subhead">University Communication Hub — SRM University-AP</p>
+          </div>
+          <button class="btn btn-primary compose-btn" id="openComposeBtn" type="button">
+            <svg class="compose-btn-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M12 20h9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              <path d="m16.5 3.5 4 4L8 20l-5 1 1-5L16.5 3.5Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span>Compose Message</span>
+            <span class="compose-btn-shortcut" aria-hidden="true">New</span>
+          </button>
+        </div>
+
+        <!-- Filter Tabs & Folders Bar -->
+        <div class="inbox-filter-bar">
+          <div class="filter-tabs" role="group" aria-label="Filters">
+            <button class="filter-tab on" data-filter="all">All</button>
+            <button class="filter-tab" data-filter="unread">Unread</button>
+            <button class="filter-tab" data-filter="important">Important</button>
+            <button class="filter-tab" data-filter="action">Action Required</button>
+          </div>
+          <div class="folder-select-wrap">
+            <select id="folderSelect" class="folder-dropdown">
+              <option value="inbox">📁 Inbox</option>
+              <option value="sent">📤 Sent</option>
+              <option value="drafts">📝 Drafts</option>
+              <option value="archived">📦 Archived</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Two-Panel Split Layout (List Left, Reader Right) -->
+        <div class="inbox-split-layout">
+          <!-- Left: Message List -->
+          <div class="card message-list-card" id="messageListContainer">
+            <div style="padding: 20px; text-align: center; color: var(--muted);">No messages found in this view.</div>
+          </div>
+
+          <!-- Right: Message Reading Panel -->
+          <div class="card message-reader-card" id="messageReaderPanel">
+            <div class="reader-empty-state" id="readerEmptyState">
+              <div class="empty-icon">📬</div>
+              <h3>Select a message to read</h3>
+              <p>Choose a conversation from the left to view its details and respond.</p>
+            </div>
+
+            <div class="reader-content-wrap" id="readerContentWrap" style="display: none;">
+              <div class="reader-header">
+                <h2 id="readerSubject"></h2>
+                <div class="reader-sender-info">
+                  <span class="sender-avatar" id="readerSenderAv">--</span>
+                  <div>
+                    <strong id="readerSenderName"></strong>
+                    <small id="readerSenderMeta"></small>
+                  </div>
+                  <span class="reader-timestamp" id="readerTime"></span>
+                </div>
+              </div>
+
+              <div class="reader-badges-row" id="readerBadgesRow"></div>
+
+              <div class="reader-body" id="readerBodyText"></div>
+
+              <!-- Attachments Section -->
+              <div class="reader-attachments" id="readerAttachments" style="display: none;">
+                <h4>Attachments</h4>
+                <div class="attachment-card">
+                  <span></span>
+                </div>
+              </div>
+
+              <!-- SRM AP Action Controls (Acknowledge / Complete) -->
+              <div class="reader-actions-box" id="readerActionBox">
+                <div class="action-box-title">Required Action</div>
+                <div class="action-buttons-group">
+                  <button class="btn btn-mint" id="acknowledgeBtn">✓ Acknowledge &amp; Confirm</button>
+                  <button class="btn btn-outline" id="completeActionBtn">Complete Task</button>
+                </div>
+              </div>
+
+              <!-- Message Toolbar Buttons -->
+              <div class="reader-toolbar">
+                <button class="tool-btn" id="replyBtn">💬 Reply</button>
+                <button class="tool-btn" id="starBtn">⭐ Star</button>
+                <button class="tool-btn" id="archiveBtn">📦 Archive</button>
+                <button class="tool-btn" id="markUnreadBtn">✉️ Mark Unread</button>
+              </div>
+
+              <!-- Inline Reply Box -->
+              <div class="reply-box-wrap" id="replyBoxWrap" style="display: none;">
+                <h4>Reply to <span id="replyRecipientName"></span></h4>
+                <textarea id="replyTextarea" placeholder="Type your reply here..."></textarea>
+                <div class="reply-box-footer">
+                  <button class="btn btn-primary" id="sendReplyBtn">Send Reply</button>
+                  <button class="btn btn-outline" id="cancelReplyBtn">Cancel</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Compose Modal -->
+  <div class="modal-overlay" id="composeModal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3>New Message</h3>
+        <button class="modal-close" id="closeComposeBtn">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="field">
+          <label for="composeTo">To</label>
+          <div class="recipient-autocomplete">
+            <input type="text" id="composeTo" class="input" placeholder="Search a person"
+              role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="recipientSuggestions" autocomplete="off">
+            <div class="recipient-suggestions" id="recipientSuggestions" role="listbox" aria-label="People and departments" hidden></div>
+          </div>
+          <small class="recipient-hint">Type a name to find another account, or search for a department. Department choices are always available.</small>
+        </div>
+        <div class="field">
+          <label for="composeSubject">Subject (optional — AI can create one)</label>
+          <input type="text" id="composeSubject" class="input" placeholder="Enter subject...">
+        </div>
+        <div class="field">
+          <label for="composeBody">Message Body</label>
+          <textarea id="composeBody" class="input compose-textarea" placeholder="Write your message here..."></textarea>
+        </div>
+        <section class="ai-announcement-panel inbox-ai-panel" aria-labelledby="inboxAiHeading">
+          <div class="ai-announcement-heading">
+            <div>
+              <span class="ai-pill">Gemini AI</span>
+              <strong id="inboxAiHeading">Improve message &amp; route departments</strong>
+            </div>
+            <button class="btn inbox-ai-optimize-btn" id="optimizeInboxMessageBtn" type="button">
+              <svg class="inbox-ai-optimize-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="m12 3 1.65 5.35L19 10l-5.35 1.65L12 17l-1.65-5.35L5 10l5.35-1.65L12 3Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+                <path d="m19 15 .9 2.1L22 18l-2.1.9L19 21l-.9-2.1L16 18l2.1-.9L19 15Z" fill="currentColor"/>
+              </svg>
+              <span>Optimize with AI</span>
+              <span class="inbox-ai-btn-arrow" aria-hidden="true">→</span>
+            </button>
+          </div>
+          <p class="ai-announcement-status" id="inboxAiStatus" role="status" aria-live="polite">
+            Write your message, then use AI to polish it and route it to relevant departments. Choose a person above to send it personally instead.
+          </p>
+          <div class="ai-department-results" id="inboxAiDepartments" aria-label="AI-selected departments" hidden></div>
+        </section>
+        <div class="field-row">
+          <div class="field">
+            <label for="composePriority">Priority</label>
+            <select id="composePriority" class="input">
+              <option value="normal">Normal</option>
+              <option value="important">Important / Starred</option>
+            </select>
+          </div>
+          <div class="field checkbox-field">
+            <label>
+              <input type="checkbox" id="composeActionReq"> Require Action / Acknowledgment
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline" id="saveDraftBtn">Save Draft</button>
+        <button class="btn btn-primary" id="sendMsgBtn">Send Message</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="../api-client.js?v=profile-editor-20261101"></script>
+  <script>window.CampusSyncAPI.bootstrapPage([
+    '../departments.js', '../dashboard-common.js?v=profile-editor-20261101', 'inbox.js?v=inbox-ai-low-latency-20261031', '../gemini-assistant/widget.js?v=api-response-fix-20261031'
+  ], ['inbox']);</script>
+</body>
+</html>

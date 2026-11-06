@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Welcome to SRM AP</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="bg" aria-hidden="true">
+    <div class="bg__base"></div>
+    <div class="bg__streaks"></div>
+  </div>
+
+  <main class="card">
+
+    <!-- Left: setup tasks -->
+    <section class="setup">
+      <div class="setup__inner">
+        <div class="logo-container">
+        <img src="logo.jpg" alt="SRM AP Logo" class="custom-logo">
+      </div>
+
+        <h1  class="setup__title">Welcome to SRM AP</h1>
+        <p class="setup__intro">We're glad you're here. To finish setting up your account, add a few details to your profile.</p>
+
+        <div class="progress">
+          <span id="tasks-remaining">3 tasks remaining</span>
+          <span class="progress__right">
+            <span id="percent-complete">0% complete</span>
+            <span class="progress__track" aria-hidden="true"><span class="progress__fill" id="progress-fill"></span></span>
+          </span>
+        </div>
+
+        <nav class="tasks" aria-label="Setup tasks">
+          <a class="task" href="../page2/index.html" data-done="false">
+            <div class="task__icon" aria-hidden="true"><span class="shape shape--circle"></span></div>
+            <div class="task__content">
+              <div class="task__row">
+                <div>
+                  <div class="task__title">Personal profile</div>
+                  <div class="task__desc">Your name, college email and contact details.</div>
+                </div>
+                <svg class="chevron" aria-hidden="true" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7.5 4.5l5.5 5.5-5.5 5.5"/></svg>
+              </div>
+              <div class="task__divider"></div>
+            </div>
+          </a>
+
+          <a class="task" href="../page3/index.html" data-done="false">
+            <div class="task__icon" aria-hidden="true">
+              <svg width="24" height="20" viewBox="0 0 24 20"><path d="M7 2h10c1.2 0 2 .8 2.3 1.9l2.6 10c.4 1.5-.7 2.8-2.2 2.8H4.3c-1.5 0-2.6-1.3-2.2-2.8l2.6-10C5 2.8 5.8 2 7 2z" fill="#86b8a6"/></svg>
+            </div>
+            <div class="task__content">
+              <div class="task__row">
+                <div>
+                  <div class="task__title">Role &amp; department</div>
+                  <div class="task__desc">Whether you're a student, faculty or staff, and where you belong.</div>
+                </div>
+                <svg class="chevron" aria-hidden="true" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7.5 4.5l5.5 5.5-5.5 5.5"/></svg>
+              </div>
+              <div class="task__divider"></div>
+            </div>
+          </a>
+
+          <a class="task" href="../page4/index.html" data-done="false">
+            <div class="task__icon" aria-hidden="true"><span class="shape shape--pill"></span></div>
+            <div class="task__content">
+              <div class="task__row">
+                <div>
+                  <div class="task__title">Academic details</div>
+                  <div class="task__desc">Registration number, school, programme, specialization and section.</div>
+                </div>
+                <svg class="chevron" aria-hidden="true" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7.5 4.5l5.5 5.5-5.5 5.5"/></svg>
+              </div>
+              <div class="task__divider"></div>
+            </div>
+          </a>
+        </nav>
+
+        <a class="staff-link" href="../page3/index.html">
+          Faculty or staff? Add employment details instead
+          <svg aria-hidden="true" width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7.5 4.5l5.5 5.5-5.5 5.5"/></svg>
+        </a>
+        <a class="dashboard-link" id="dashboard-link" href="../../dashboard/dashboard/dashboard.html" hidden>
+          <span>
+            <strong>Setup complete</strong>
+            <small>Your CampusSync workspace is ready.</small>
+          </span>
+          <span aria-hidden="true">Open dashboard →</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- Right: dark showcase panel -->
+    <aside class="showcase" aria-hidden="true">
+      <span class="deco deco--a animate-float-slow"></span>
+      <span class="deco deco--b animate-pulse"></span>
+      <span class="deco deco--c animate-float-mid"></span>
+      <span class="deco deco--d animate-float-slow"></span>
+      <span class="deco deco--e animate-pulse"></span>
+      <span class="deco deco--f animate-float-fast"></span>
+
+      <div class="photo animate-float-mid">
+        <svg width="100%" height="100%" viewBox="0 0 356 270" preserveAspectRatio="xMidYMid slice">
+          <path d="M70 270C70 212 118 188 178 188C238 188 286 212 286 270Z" fill="#b9d0c6"/>
+          <rect x="160" y="150" width="36" height="46" rx="14" fill="#d3b6a3"/>
+          <circle cx="178" cy="122" r="50" fill="#e0c7b5"/>
+          <path d="M126 118C126 80 150 62 180 62C212 62 232 84 230 120C214 104 196 98 178 98C158 98 140 104 126 118Z" fill="#6a5448"/>
+        </svg>
+        <span class="photo__chip photo__chip--1"></span>
+        <span class="photo__chip photo__chip--2"></span>
+      </div>
+
+      <div class="glass animate-float-slow">
+        <div class="glass__head">
+          <div class="glass__badge"><strong>3</strong><small>STEPS</small></div>
+          <span class="glass__rule"></span>
+          <div>
+            <div class="glass__title">Your profile</div>
+            <div class="glass__sub">SRM University-AP</div>
+          </div>
+        </div>
+
+        <div class="bars">
+          <span class="bar bar--on"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </div>
+
+        <div class="track">
+          <span class="track__line"></span>
+          <span class="track__line track__line--on"></span>
+          <span class="node node--on node--1"></span>
+          <span class="node node--on node--2"></span>
+          <span class="node node--3"></span>
+          <span class="node node--4"></span>
+        </div>
+
+        <div class="labels">
+          <div class="label label--1"><b>Profile</b><span>Contact</span></div>
+          <div class="label label--2"><b>Role</b><span>Department</span></div>
+          <div class="label label--3"><b>Details</b><span>Category</span></div>
+          <div class="label label--4"><b>Done</b><span>Ready</span></div>
+        </div>
+      </div>
+    </aside>
+
+  </main>
+
+  <script src="../../dashboard/api-client.js"></script>
+  <script>window.CampusSyncAPI.bootstrapPage(['script.js'], []);</script>
+</body>
+</html>

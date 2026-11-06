@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Student details</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="student.css">
+</head>
+<body>
+  <div class="bg" aria-hidden="true">
+    <div class="bg__base"></div>
+    <div class="bg__streaks"></div>
+  </div>
+
+  <main class="card">
+
+    <!-- Left: form -->
+    <section class="form-panel">
+      <div class="form-panel__inner">
+        <!-- Logo Image Added -->
+<div class="brand-header">
+  <div class="logo-container">
+    <img src="logo.jpg" alt="SRM AP Logo" class="custom-logo">
+  </div>
+  <span class="brand-name">CampusSync</span>
+</div>
+
+        <a class="back-link" href="../page1/index.html">
+          <svg aria-hidden="true" width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12.5 4.5l-5.5 5.5 5.5 5.5"/></svg>
+          Setup overview
+        </a>
+
+        <div class="steps" aria-hidden="true">
+          <span class="steps__bar is-on"></span>
+          <span class="steps__bar is-on"></span>
+          <span class="steps__bar is-on"></span>
+        </div>
+        <div class="eyebrow">STEP 3 OF 3 · STUDENTS</div>
+        <h1 class="form-title">Student details</h1>
+        <p class="form-desc">Your academic record helps us route messages to your school, programme and batch.</p>
+
+        <form id="student-form" class="fields fields--compact" novalidate>
+          <div class="field">
+            <label for="reg">Registration / roll number</label>
+            <input class="input" id="reg" name="reg" type="text" placeholder="Your university-issued ID" autocomplete="off">
+            <p class="field__error" id="reg-error" role="alert"></p>
+          </div>
+
+          <div class="field">
+            <label for="school">School</label>
+            <div class="select-wrap">
+              <select class="input is-placeholder" id="school" name="school">
+                <option value="" selected>Select your school</option>
+              </select>
+              <svg aria-hidden="true" width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 7.5l5 5 5-5"/></svg>
+            </div>
+            <p class="field__error" id="school-error" role="alert"></p>
+          </div>
+
+          <div class="row-2">
+            <div class="field">
+              <label for="dept">Department</label>
+              <div class="select-wrap">
+                <select class="input is-placeholder" id="dept" name="dept" disabled>
+                  <option value="" selected>Select school first</option>
+                </select>
+                <svg aria-hidden="true" width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 7.5l5 5 5-5"/></svg>
+              </div>
+              <p class="field__error" id="dept-error" role="alert"></p>
+            </div>
+            <div class="field">
+              <label for="programme">Programme</label>
+              <div class="select-wrap">
+                <select class="input is-placeholder" id="programme" name="programme" disabled>
+                  <option value="" selected>Select department first</option>
+                </select>
+                <svg aria-hidden="true" width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 7.5l5 5 5-5"/></svg>
+              </div>
+              <p class="field__error" id="programme-error" role="alert"></p>
+            </div>
+          </div>
+
+          <div class="row-2">
+            <div class="field">
+              <label for="spec">Specialization</label>
+              <div class="select-wrap">
+                <select class="input is-placeholder" id="spec" name="spec" disabled>
+                  <option value="" selected>Select programme first</option>
+                </select>
+                <svg aria-hidden="true" width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 7.5l5 5 5-5"/></svg>
+              </div>
+              <p class="field__error" id="spec-error" role="alert"></p>
+            </div>
+            <div class="field">
+              <label for="admission">Admission year</label>
+              <div class="select-wrap">
+                <select class="input is-placeholder" id="admission" name="admission">
+                  <option value="" selected>Select year</option>
+                </select>
+                <svg aria-hidden="true" width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 7.5l5 5 5-5"/></svg>
+              </div>
+              <p class="field__error" id="admission-error" role="alert"></p>
+            </div>
+          </div>
+
+          <div class="row-2">
+            <div class="field">
+              <label for="acyear"><span>Current year</span><span class="field__opt">Optional</span></label>
+              <div class="select-wrap">
+                <select class="input is-placeholder" id="acyear" name="acyear">
+                  <option value="" selected>Select year</option>
+                  <option>1st</option>
+                  <option>2nd</option>
+                  <option>3rd</option>
+                  <option>4th</option>
+                </select>
+                <svg aria-hidden="true" width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 7.5l5 5 5-5"/></svg>
+              </div>
+            </div>
+            <div class="field">
+              <label for="section"><span>Section</span><span class="field__opt">Optional</span></label>
+              <input class="input" id="section" name="section" type="text" placeholder="e.g. A" maxlength="10">
+            </div>
+          </div>
+
+          <div class="actions">
+            <a class="btn btn--ghost" href="../page3/index.html">Back</a>
+            <button class="btn btn--primary" type="submit">
+              Finish setup
+              <svg aria-hidden="true" width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7.5 4.5l5.5 5.5-5.5 5.5"/></svg>
+            </button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- Right: dark showcase panel with animations -->
+    <aside class="showcase" aria-hidden="true">
+      <span class="deco deco--a animate-float-slow"></span>
+      <span class="deco deco--b animate-pulse"></span>
+      <span class="deco deco--c animate-float-mid"></span>
+      <span class="deco deco--d animate-float-slow"></span>
+      <span class="deco deco--e animate-pulse"></span>
+      <span class="deco deco--f animate-float-fast"></span>
+
+      <div class="photo animate-float-mid">
+        <svg width="100%" height="100%" viewBox="0 0 356 270" preserveAspectRatio="xMidYMid slice">
+          <path d="M70 270C70 212 118 188 178 188C238 188 286 212 286 270Z" fill="#b9d0c6"/>
+          <rect x="160" y="150" width="36" height="46" rx="14" fill="#d3b6a3"/>
+          <circle cx="178" cy="122" r="50" fill="#e0c7b5"/>
+          <path d="M126 118C126 80 150 62 180 62C212 62 232 84 230 120C214 104 196 98 178 98C158 98 140 104 126 118Z" fill="#6a5448"/>
+        </svg>
+        <span class="photo__chip photo__chip--1"></span>
+        <span class="photo__chip photo__chip--2"></span>
+      </div>
+
+      <div class="glass animate-float-slow">
+        <div class="glass__head">
+          <div class="glass__badge"><strong>3</strong><small>OF 3</small></div>
+          <span class="glass__rule"></span>
+          <div>
+            <div class="glass__title">Student details</div>
+            <div class="glass__sub">SRM University-AP</div>
+          </div>
+        </div>
+
+        <div class="bars">
+          <span class="bar bar--on"></span>
+          <span class="bar bar--on"></span>
+          <span class="bar bar--on"></span>
+        </div>
+
+        <div class="track">
+          <span class="track__line"></span>
+          <span class="track__line track__line--on track__line--three"></span>
+          <span class="node node--on node--1"></span>
+          <span class="node node--on node--2"></span>
+          <span class="node node--on node--3"></span>
+          <span class="node node--on node--4"></span>
+        </div>
+
+        <div class="labels">
+          <div class="label label--1"><b>Profile</b><span>Contact</span></div>
+          <div class="label label--2"><b>Role</b><span>Department</span></div>
+          <div class="label label--3"><b>Details</b><span>Category</span></div>
+          <div class="label label--4"><b>Done</b><span>Ready</span></div>
+        </div>
+      </div>
+    </aside>
+
+  </main>
+
+  <script src="../../dashboard/api-client.js"></script>
+  <script>window.CampusSyncAPI.bootstrapPage(['student-catalog.js', 'student.js'], []);</script>
+</body>
+</html>

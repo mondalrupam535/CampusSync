@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CampusSync - Sign In / Sign Up</title>
+
+  <!-- Font Awesome for Google Icon -->
+  <link 
+    rel="stylesheet" 
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" 
+  />
+  
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="container" id="container">
+    
+    <!-- ================= SIGN UP FORM ================= -->
+    <div class="form-container sign-up-container">
+      <form action="#">
+        <!-- Logo inside Sign Up Form -->
+        <div class="brand-header">
+          <img src="logo.jpg" alt="CampusSync Logo" class="brand-logo" />
+          <span class="brand-name">CampusSync</span>
+        </div>
+
+        <h1>Create Account</h1>
+        <p class="auth-status" id="signUpStatus" role="status" aria-live="polite"></p>
+        <p class="google-password-prompt" id="googlePasswordPrompt" hidden>
+          Create a password for the Google account you selected to finish signing up.
+        </p>
+        
+        <!-- Google Single Sign-On Button -->
+        <button type="button" class="btn-google">
+          <i class="fab fa-google google-icon"></i>
+          <span>Sign up with Google</span>
+        </button>
+        
+        <div class="divider">
+          <span>or use your email for registration</span>
+        </div>
+        
+        <input type="text" placeholder="Full Name" autocomplete="name" required />
+        <input type="email" placeholder="Email Address" autocomplete="email" required />
+        <input type="password" placeholder="Password" minlength="8" maxlength="72" autocomplete="new-password" required />
+        
+        <button type="submit" class="btn-primary">Sign Up</button>
+      </form>
+    </div>
+
+    <!-- ================= SIGN IN FORM ================= -->
+    <div class="form-container sign-in-container">
+      <form action="#">
+        <!-- Logo inside Sign In Form -->
+        <div class="brand-header">
+          <img src="logo.jpg" alt="CampusSync Logo" class="brand-logo" />
+          <span class="brand-name">CampusSync</span>
+        </div>
+
+        <h1>Sign In</h1>
+        <p class="auth-status" id="signInStatus" role="status" aria-live="polite"></p>
+        
+        <!-- Google Single Sign-On Button -->
+        <button type="button" class="btn-google">
+          <i class="fab fa-google google-icon"></i>
+          <span>Sign in with Google</span>
+        </button>
+        
+        <div class="divider">
+          <span>or use your email account</span>
+        </div>
+        
+        <input type="email" placeholder="Email Address" required />
+        <input type="password" placeholder="Password" required />
+        
+        <a href="#" class="forgot-password">Forget your password?</a>
+        
+        <button type="submit" class="btn-primary">Sign In</button>
+        <p class="auth-switch">New to CampusSync? <button type="button" class="auth-switch__button" id="createAccount">Create an account</button></p>
+      </form>
+    </div>
+
+    <!-- ================= OVERLAY CONTAINER (VIDEO SIDEBAR) ================= -->
+    <div class="overlay-container">
+      <div class="overlay">
+        
+        <!-- Background Video Element -->
+        <video class="bg-video" autoplay loop muted playsinline>
+          <source src="video.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+
+        <!-- Left Panel (Visible when Sign Up is active) -->
+        <div class="overlay-panel overlay-left">
+          <h1>Welcome Back!</h1>
+          <p>To keep connected with us please login with your personal info</p>
+          <button class="btn-ghost" id="signIn">Sign In</button>
+        </div>
+
+        <!-- Right Panel (Visible when Sign In is active) -->
+        <div class="overlay-panel overlay-right">
+          <h1>Hey There!</h1>
+          <p>Create your account now and step into an amazing new journey.</p>
+          <button class="btn-ghost" id="signUp">Sign Up</button>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Custom JavaScript File -->
+  <script src="../dashboard/api-client.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+server:
+  port: ${PORT:8000}
+  forward-headers-strategy: framework
+  servlet:
+    session:
+      cookie:
+        http-only: true
+
+spring:
+  datasource:
+    url: ${DATABASE_URL:jdbc:postgresql://localhost:5432/campussync}
+    username: ${DATABASE_USERNAME:campussync}
+    password: ${DATABASE_PASSWORD:campussync_dev_only}
+    hikari:
+      maximum-pool-size: 10
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        jdbc:
+          time_zone: UTC
+  flyway:
+    enabled: true
+  servlet:
+    multipart:
+      max-file-size: 15MB
+      max-request-size: 16MB
+
+campussync:
+  frontend-root: ${FRONTEND_ROOT:../}
+  session-days: ${SESSION_DAYS:30}
+  cookie-secure: ${COOKIE_SECURE:false}
+  google-client-id: ${GOOGLE_CLIENT_ID:}
+  gemini-api-key: ${GEMINI_API_KEY:}
+  gemini-model: ${GEMINI_MODEL:gemini-3.5-flash-lite}
+  department-router-jar: ${DEPARTMENT_ROUTER_JAR:../../dept/target/department-router-1.0-shaded.jar}
+  admin-emails: ${CAMPUSSYNC_ADMIN_EMAILS:}
